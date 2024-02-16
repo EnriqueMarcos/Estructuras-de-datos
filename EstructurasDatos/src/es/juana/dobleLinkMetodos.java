@@ -9,15 +9,18 @@ public class dobleLinkMetodos<T> implements DoubleLinkedList<T>{
 
 	@Override
 	public void add(T elemento) {
+		Nodo<T> inicial1 = new Nodo<T>(elemento);
 		if (inicial == null && tail == null) {
-			tail = inicial;
+			inicial = inicial1;
+			tail = inicial1;
 		}else {
-			Nodo<T> actual = tail;
+			Nodo<T> actual = inicial;
 			while (actual.siguiente != null) {
 				actual = actual.siguiente;
 			}
-			actual.siguiente = new Nodo<T>(elemento);
-			actual.siguiente = tail;
+			actual.siguiente = inicial1;
+			actual.siguiente.anterior = actual;
+			tail = actual.siguiente;
 		}
 	}
 
@@ -33,20 +36,21 @@ public class dobleLinkMetodos<T> implements DoubleLinkedList<T>{
 
 		@Override
 		public void remove(T elemento) {
-			if(inicial == elemento) {
-				inicial = null;
-			}else if(tail == elemento){
-				tail = null;
+			
+			if(inicial.getValor().equals(elemento)) {
+				inicial = inicial.siguiente;
+			}else if(tail.getValor().equals(elemento)){
+				tail = tail.anterior;
 			}else{
 				Nodo<T> actual = inicial;
-				actual = tail;
-				while (actual.siguiente != null) {
+				while (actual.siguiente.equals(elemento)) {
 					actual = actual.siguiente;
-					if (actual == elemento) {
-						actual = null;
-					}
-
+					
 				}
+				if (actual.getValor().equals(elemento)) {
+						actual.siguiente = actual.siguiente.siguiente;
+						actual.siguiente.anterior = actual;
+					}
 			}
 		}
 
@@ -65,8 +69,8 @@ public class dobleLinkMetodos<T> implements DoubleLinkedList<T>{
 			if (inicial == null) {
 				return 0;
 			}else {
-				Nodo<T> actual = tail;
-				while (actual.siguiente != null) {
+				Nodo<T> actual = inicial;
+				while (actual != null) {
 					actual = actual.siguiente;
 					contador++;
 				}
@@ -98,7 +102,18 @@ public class dobleLinkMetodos<T> implements DoubleLinkedList<T>{
 	
 	@Override
 	public String toString() {
-		return null;
+		Nodo<T> inicial1 = inicial;
+		StringBuilder sb = new StringBuilder();
+		sb.append("[");
+		while (inicial1 != null) {
+			sb.append(inicial1.getValor());
+			if(inicial1.siguiente != null) {
+				sb.append(", ");
+			}
+			inicial1 = inicial1.siguiente;
+		}
+		sb.append("]");
+		return sb.toString();
 
 	}
 

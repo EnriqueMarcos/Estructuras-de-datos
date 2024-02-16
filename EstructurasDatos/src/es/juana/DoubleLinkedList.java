@@ -1,4 +1,4 @@
-package es.juana.dbll;
+package es.juana;
 
 public interface DoubleLinkedList<T> {
 	
