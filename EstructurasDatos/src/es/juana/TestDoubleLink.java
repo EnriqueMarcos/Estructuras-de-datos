@@ -39,7 +39,13 @@ class TestDoubleLink {
 		 assertEquals("[5, 30]", lista.toString());
 		 
 	 }
-	
+	 @Test
+	 void removeIndex() {
+		 Integer a = 0;
+		 lista.remove(a);
+		 assertEquals("[25, 30]", lista.toString());
+		 
+	 }
 	
 	
 }

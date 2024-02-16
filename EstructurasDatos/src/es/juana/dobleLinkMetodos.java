@@ -31,8 +31,10 @@ public class dobleLinkMetodos<T> implements DoubleLinkedList<T>{
 
 		@Override
 		public T remove(int index) {
-			return null;
-		}
+			
+	    }
+
+		
 
 		@Override
 		public void remove(T elemento) {
@@ -41,16 +43,11 @@ public class dobleLinkMetodos<T> implements DoubleLinkedList<T>{
 				inicial = inicial.siguiente;
 			}else if(tail.getValor().equals(elemento)){
 				tail = tail.anterior;
-			}else{
-				Nodo<T> actual = inicial;
-				while (actual.siguiente.equals(elemento)) {
-					actual = actual.siguiente;
-					
-				}
-				if (actual.getValor().equals(elemento)) {
-						actual.siguiente = actual.siguiente.siguiente;
-						actual.siguiente.anterior = actual;
-					}
+			}else {
+			    Nodo<T> actual = inicial;
+			    if (actual.siguiente.getValor().equals(elemento)) {
+			        actual.siguiente = actual.siguiente.siguiente;
+			    }
 			}
 		}
 
