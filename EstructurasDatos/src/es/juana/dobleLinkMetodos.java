@@ -119,24 +119,21 @@ public class dobleLinkMetodos<T> implements DoubleLinkedList<T>{
 
 		@Override
 		public void clear() {
-			if(inicial == null && tail == null) {
-				
-			}else {
-				Nodo<T> actual = tail;
-				while (actual.siguiente != null) {
-					actual = null;
-				}
-			}
+			inicial = null;
+		    tail = null;
 		}
 
 		@Override
 		public boolean contains(T elemento) {
-			if(inicial == null && tail == null) {
-				return false;
-			}else if(inicial == elemento && tail == elemento){
-				return true;
-			}
-			return false;
+			Nodo actual = inicial;
+		    while (actual != null) {
+		        if (actual.getValor().equals(elemento)) {
+		            return true;
+		        }
+		        actual = actual.siguiente;
+		    }
+		    return false;
+			
 		}
 	
 	@Override
@@ -158,7 +155,23 @@ public class dobleLinkMetodos<T> implements DoubleLinkedList<T>{
 
 	@Override
 	public Object[] toArray() {
-		return null;
+		int count = 0;
+	    Nodo<T> actual = inicial;
+	    while (actual != null) {
+	        count++;
+	        actual = actual.siguiente;
+	    }
+	    
+	    Object[] array = new Object[count];
+	    
+	    actual = inicial;
+	    int index = 0;
+	    while (actual != null) {
+	        array[index++] = actual.getValor();
+	        actual = actual.siguiente;
+	    }
+	    
+	    return array;
 
 	}
 }

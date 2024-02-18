@@ -50,9 +50,29 @@ class TestDoubleLink {
 	 void addForIndex() {
 		 lista.add(10, 1);
 		 assertEquals("[5, 10, 25, 30]", lista.toString());
-		 
-		 
 	 }
+	 @Test 
+	 void empty(){
+		 assertFalse(lista.isEmpty());
+	 }
+	 @Test 
+	 void size(){
+		 assertEquals(3, lista.size());
+	 }
+	 @Test 
+	 void clear(){
+		 lista.clear();
+		 assertEquals(0, lista.size());
+	 }
+	 @Test 
+	 void contains(){
+		 assertEquals(true, lista.contains(5));
+	 }
+	 @Test 
+	 void toArray(){
+		 System.out.println(lista.toArray());
+	 }
+	 
 	
 	
 }
